@@ -1,8 +1,22 @@
 <!-- php코드가 들어간다 -->
 <?php
     if(isset($_POST["submitButton"])){
-        echo"제출 완료 되었습니다!";
+        $firstName=sanitizeFormString($_POST["firstName"]);
+        echo $firstName;
     }
+    function sanitizeFormString($inputText){
+        $inputText = strip_tags($inputText);
+        // $inputText = str_replace("","",$inputText);
+        // 앞 뒤 공백 제거
+        $inputText = trim($inputText);
+        // 첫글자를 제외하고는 모두 lower case로
+        $inputText = strtolower($inputText);
+        // userName의 Upper case 로 만들어줌
+        $inputText = ucfirst($inputText);
+        return $inputText;
+
+    }
+
 ?>
 
 <!DOCTYPE html>
